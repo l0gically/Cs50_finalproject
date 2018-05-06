@@ -1,0 +1,24 @@
+ <link rel="stylesheet" href="static/bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="static/bootstrap/bootswatch-master/dist/lumen/bootstrap.min.css">
+ <link rel="stylesheet" href="static/mystyle.css">
+ 
+{% macro render_field(field) %}
+	{{ field.label }}
+	{{ field(**kwargs) | safe }}
+	
+	{% for error in field.errors %}
+		<small class="form-text text-danger">{{ error }}</small>
+	{% endfor %}
+{% endmacro %}
+
+
+{% macro error_messages(error_text_arr) %}
+	<div class="error-box">
+<ul>
+ {% for error in error_text_arr %}
+ 	<li class="form-text text-danger">{{ error }}</li>
+ {% endfor %}
+</ul>
+ </div>
+
+{% endmacro %}

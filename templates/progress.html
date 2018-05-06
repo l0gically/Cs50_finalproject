@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+	  <!-- Load the AJAX API -->
+	 {% block title %}Progress{% endblock %}
+  {% block main %}
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div" style="margin-top:10%;"></div>
+  {% endblock %}
+  {% block script %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="static/progress.js"></script>
+  {% endblock %}

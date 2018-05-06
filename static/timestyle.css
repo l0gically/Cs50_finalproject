@@ -1,0 +1,17 @@
+main {
+	text-align: center;
+	display: initial;
+	/*margin-top: 8%;
+	margin-bottom: 10%;*/
+}
+
+time {
+	font-size: 11vw;
+	font-weight: 900;
+	/*font-family: 'Anonymous Pro', monospace;*/
+}
+
+#closeit {
+	color: red;
+	font-size: 3rem;
+}

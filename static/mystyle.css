@@ -1,0 +1,76 @@
+html,
+body {
+    height: 100%;
+}
+
+
+#webcover {
+	background: #222 url('../static/img/britt-felton-63861-unsplash.jpg') center center no-repeat;
+    background-size: cover;
+	height: 100%;
+	color: #242126;
+	text-align: center;
+	display: flex;
+	align-items: center;
+}
+
+#cover-caption {
+    width: 100%;
+}
+
+.welcome-btn{
+	padding: 0.75rem 0.75rem 0 0;
+}
+
+#welcome-sticker {
+	background-color: rgba(122, 233, 182, 0.35);
+}
+
+/* #slide1 {
+
+} */
+/* The regiser form*/
+
+#Theform {
+	padding: 5rem 15rem 0rem 15rem;
+}
+
+.flash {
+	background: #cee5F5; padding: 0.5em;
+    border: 1px solid #aacbe2;
+}
+
+#flash-text {
+	text-align: center;
+	color: black;
+	list-style: none;
+}
+
+.p-input {
+	padding: 0 rem 1rem
+}
+td {
+	text-align: left;
+}
+
+div.error-box {
+	text-align: center;
+	background-color: #989dc64d;
+	margin: 5%;
+	padding: 1em 1em 0.5em 1em;
+	border-radius: 3%;
+}
+
+#time-container {
+	height: 85%
+}
+
+#stopwatch-style {
+	margin: 7em 0em 0em 0em;
+}
+
+#activity-full-form{
+	background-color: whitesmoke;
+	padding: 2em;
+	margin: 3em 0em 0em 0em;
+}

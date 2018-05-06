@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+{% block title %} Stopwatch {% endblock %}
+{% block main %}
+  <!-- <div class="time-container"> -->
+	  <!--Keep stopwatch running even when the page refreshes-->
+		<section id="time-container" class="container-fluid">
+		<!-- The stopwatch -->
+			<div id="stopwatch-style"><time datetime="0" id="display">0 . 00</time></div>
+			 {% if current_user.is_authenticated %}
+				<div class="col-xs-6 col-xs-offset-3">
+					<div class="row align-self-stretch">
+						<div class="my-2 col-md-4">
+							<button id="toggle" class="btn btn-primary">Start</button>
+						</div>
+					   <div class=" my-2 col-md-4">
+							<button id="reset" class="btn btn-danger">Reset</button>
+						</div>
+							<div class=" my-2 col-md-4">
+								<button id="duration" class="btn btn-success" type="button">add duration</button>
+							</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-xs-offset-3">
+					<div class="my-4">
+						<label>My activities</label>
+						<select data-live-search="true" class="custom-select" name="avaliable-activities" id="activities-dropdown">
+							{% if not activities%}
+								<optgroup label = "Add some activities">
+							{% else %}
+								{% for activity in activities %}
+									<option value="{{activity.title}}">{{activity.title}}</option>
+								{% endfor %}
+
+							{%endif%}
+						</select>
+
+						<div class="row align-self-stretch">
+							<div class="my-2 col-md-4">
+								<button id="show-create-act-btn" class="btn btn-lg btn-primary">create activity</button>
+							</div>
+							<div class="my-2 col-md-4">
+								<!-- Alert: do you want to delete the activity -->
+								<button id="delete-activity-btn" class="btn btn-danger btn-lg">- delete activity</button>
+							</div>
+							<div class="my-2 col-md-4">
+								<button id="all-activity-durations" class="btn btn-primary btn-sm"><small>all durations for activity</small></button>
+							</div>
+						</div>
+						</div>
+						<div class="my-4">
+							<label>Activity types</label>
+							<select id="type-dropdown" class="custom-select" name="avaliable-types"></select>
+							<div class="row align-self-stretch">
+								<div class="my-2 col-md-4">
+									<button id="add-act-type-btn" class="btn btn-md-lg btn-primary">+ add</button>
+								</div>
+								<div class="my-2 col-md-4">
+									<button id="del-act-type-btn" class="btn btn-md-lg btn-danger">- delete</button>
+								</div>
+								<div class="my-2 col-md-4">
+									<button id="all-type-durations" class="btn btn-primary btn-sm"><small>all durations for type</small></button>
+								</div>
+							</div>
+						</div>
+
+				</div>
+			</section>
+		<div class="container">
+			<div class="col-xs-6 col-xs-offset-3">
+					<div id="activity-full-form">
+						<button id="closeit" type="button" class="mr-1 close btn" data-dismiss="alert">&times;</button>
+						<div id="activity-form" class="input-group mb-3">
+							<input name="new-activity" id="add-activity" class="form-control form-control-lg my-2" type="text" placeholder="add activity">
+						  	<!-- <div class="input-group-append">
+						  									<button id="add-activity-btn" class="btn btn-primary my-2" type="button">+</button>
+						  	</div> -->
+						</div>
+
+						<div id="activity-type-form" class="input-group mb-3">
+							<input name="new-activity-type" id="add-activity-type" class="form-control form-control-lg my-2" type="text" placeholder="add activity types: type,type,...">
+						  <!-- 	<div class="input-group-append">
+						  									<button id="add-activity-type-btn" class="btn btn-primary my-2" type="button">+</button>
+						  	</div>	 -->
+						</div>
+						<button id="create-activity-btn" class="btn btn-lg btn-primary">create activity</button>
+					</div>
+
+			   {% else %}
+
+			   <div class="col-md-4 col-md-offset-4">
+					<div class="form-inline form-group">
+						<div class="col-md-6">
+							<button id="toggle" class="btn btn-primary">Start</button>
+						</div>
+						<div class="col-md-6">
+							<button id="reset" class="btn btn-danger">Reset</button>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+	  </div>
+	</div>
+
+			<div class="col-xs-8 col-xs-offset-2">
+				{% if current_user.is_authenticated %}
+				<br><br>
+				<div id="notify-empty"></div>
+				<!-- Table to view the durations of certain activity -->
+				<!-- <div class="row align-self-stretch"> -->
+				<table id="time-table" class="my-3 table table-hover table-responsive">
+					<thead>
+					<tr>
+						<th scope="col">Activity</th>
+						<th scope="col">Activity Type</th>
+						<th scope="col">comment</th>
+						<th scope="col">Time needed</th>
+						<th scope="col">Date</th>
+						<th scope="col">Time</th>
+						<th scope="col"><button  id="hide-me" class="btn btn-info btn-sm"><small>hide</small></button></th>
+					</tr>
+					</thead>
+					<tbody id="time-table-content">
+					</tbody>
+				</table>
+			</div>
+				{% endif %}
+
+
+{% endblock %}
+{% block script %}
+<script src="static/stopwatch.js"></script>
+<script src="static/main.js"></script>
+{% endblock %}

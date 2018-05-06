@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <link rel="stylesheet" href="static/bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="static/bootstrap/bootswatch-master/dist/lumen/bootstrap.min.css">
+	 <link rel="stylesheet" href="static/timestyle.css">
+	 <link rel="stylesheet" href="static/mystyle.css">
+	<meta charset="utf-8"/>
+	<title>Time Logger:{% block title %}{% endblock %}</title>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top navbar-full" id="nav-main" role="navigation">
+			<a class="navbar-brand" href="/"><img src="../static/img/logo.png" class="d-inline-block align-top" height="50" width="50"></a>
+	 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseme">
+	 	<span class="navbar-toggler-icon"></span>
+	 </button>
+			<div class="collapse navbar-collapse" id="collapseme">
+				<ul class="nav navbar-nav mr-auto">
+					<li class="nav-item">
+						<a href="/stopwatch" id="stopwatch-link" class="nav-link">Stopwatch</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="history-link" href="/history">History</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="progress-link" href="/progress">Progress</a>
+					</li>
+				</ul>
+	<ul class="nav navbar-nav mr-lg-2">
+	{% if current_user.is_authenticated %}
+		<li class="nav-item"><a href="/logout" class="nav-link"><strong><div>Logout({{ current_user.username }})</div></strong></a></li>
+	{% else %}
+		<li class="nav-item">
+		<a class="nav-link" href="/login">Login</a>
+		</li>
+		<li class="nav-item py-2">|</li>
+		<li class="nav-item">
+		<a class="nav-link" href="/register">Register</a>
+			</li>
+	{% endif %}
+	</ul>
+	 </div>
+		</nav>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class= "flash">
+    {% for message in messages %}
+      <li id="flash-text">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+	<main>
+		{% block main %}{% endblock %}
+	</main>
+
+</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ 	<script src="static/bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/static/script.js"></script>
+	{% block script %}{% endblock %}
+</html>

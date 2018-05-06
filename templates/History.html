@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %} History {% endblock %}
+{% block main %}
+	<main id="HISTORY">
+		<table id="time-table" class="table table-hover table-responsive my-5 p-5 ">
+					<thead>
+					<tr>
+						<th scope="col">Activity</th>
+						<th scope="col">Activity Type</th>
+						<th scope="col">comment</th>
+						<th scope="col">Time needed</th>
+						<th scope="col">Date</th>
+						<th scope="col">Time</th>
+					</tr>
+					<tr>
+						<td scope="col">
+						<select name="avaliable-activities" id="act-filter" class="custom-select" style="width:auto;">
+
+								{% for act in activities %}
+									<option value="{{act.acti}}">{{act.acti}}</option>
+								{% endfor %}
+						</select>
+						</td>
+						<td scope="col">
+							<select name="avaliable-types" id="act-type-filter" class="custom-select" style="width:auto;">
+							</select>
+						</td>
+						<td scope="col">
+							<input type="text" class="form-control" name="search-comments" placeholder="search for comments">
+						</td>
+						<td scope="col">
+							<input type="range" name="" value="" class="custom-range">
+						</td>
+						<td scope="col">
+							<input name="date-filter" value="" class="form-control" type="date">
+						</td>
+						<td scope="col">
+							<input type="time" class="form-control">
+						</td>
+						<td scope="col">
+							<button class="btn btn-sm btn-success"><small>filter</small></button>
+						</td>
+
+					</tr>
+
+					</thead>
+					<tbody id="time-table-content">
+
+					{% if durations %}
+						{% for dur in durations %}
+							<tr>
+								<td name="activity-col">{{ dur.acti }}</td>
+								<td name="activity-type-col">{{ dur.act_type }}</td>
+								<td id="{{ dur.dur_id }}" name="comment-col">{{ dur.comment }}</td>
+								<td name="duration-col">{{ dur.time }}</td>
+								<td name="date-col" value="{{ dur.dformated }}">{{ dur.d }}</td>
+								<td name="time-col">{{ dur.t }}</td>
+								<td><button name="rmv-btn-dur" value="{{ dur.dur_id }}" class="btn btn-danger btn-sm"><small>remove</small></button></td>
+							</tr>
+						{% endfor %}
+					{% endif %}
+					</tbody>
+				</table>
+</main>
+{% endblock %}
+{% block script %}
+{% endblock %}
